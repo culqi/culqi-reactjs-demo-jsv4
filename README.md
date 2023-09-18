@@ -1,6 +1,6 @@
 # DEMO - Culqi ReactJS + Checkout V4
 
-La demo integra Culqi React, Checkout V4 , es compatible con la v2.0 del Culqi API, con esta demo podrás generar tokens.
+La demo integra Culqi React, Checkout V4 , es compatible con la v2.0 del Culqi API, con esta demo podrás **generar tokens** (tarjeta y Yape) y confirmar órdenes.
 
 ## Requisitos
 
@@ -26,7 +26,7 @@ npm install
 ```
 
 ## Configuración frontend
-Puedes configurar el pk y sk del comercio inicia la aplicacion.
+Puedes configurar el pk, sk, rsa_id, rsa_public_key del comercio inicia la aplicacion.
 
 
 ## Inicializar la demo
