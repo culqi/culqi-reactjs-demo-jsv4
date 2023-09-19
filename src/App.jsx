@@ -26,6 +26,10 @@ const App = () => {
             path="/payment-cip"
             render={() => { return pkExist && order_id ? <views.PaymentCip /> : <Redirect to='/' /> }}
           />
+          <Route
+            path="/payment-yape"
+            render={() => { return pkExist && order_id ? <views.PaymentYape /> : <Redirect to='/' /> }}
+          />
         </Switch>
       </div>
     </BrowserRouter>
