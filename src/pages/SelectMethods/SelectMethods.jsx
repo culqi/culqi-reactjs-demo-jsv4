@@ -38,6 +38,15 @@ const SelectMethods = () => {
     }, 200);
   }
 
+  const actionClickButtonYape = () => {
+    setLoadingCard(true);
+    setTimeout(() => {
+      setLoadingCard(false);
+      window.location.href = '/payment-yape';
+    }, 200);
+  }
+
+
   const actionClickButtonOtherMethods = async () => {
     setLoadingOther(true);
     const sk = localStorage.getItem('secretKey')
@@ -170,6 +179,12 @@ const SelectMethods = () => {
                         <span className="mb-2 ml-1 text-sm font-semibold text-gray-600">Pagar con Tarjeta</span>
                         <div>
                           <ButtonLoader onClickButton={actionClickButtonCard} isLoading={isLoadingCard} text='Pagar' textLoading='Pagar' />
+                        </div>
+                      </div>
+                      <div className="flex justify-between w-3/5 mb-3">
+                        <span className="mb-2 ml-1 text-sm font-semibold text-gray-600">Pagar con Yape</span>
+                        <div>
+                          <ButtonLoader onClickButton={actionClickButtonYape} isLoading={isLoadingCard} text='Pagar' textLoading='Pagar' />
                         </div>
                       </div>
                       <div className="flex justify-between w-3/5 mb-3">
