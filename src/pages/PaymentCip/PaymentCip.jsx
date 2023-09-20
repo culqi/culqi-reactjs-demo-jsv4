@@ -96,6 +96,8 @@ export default class PaymentCip extends Component {
         currency: currency,
         amount: amount,
         order: order_id,
+        xCulqiRSAId: "INSERTE_SU_RSA_ID",
+        rsapublickey: `INSERTE_SU_LLAVE_RSA`,       
       });
       Culqi.options({
         lang: "auto",

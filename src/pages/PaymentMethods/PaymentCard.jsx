@@ -53,6 +53,8 @@ class PaymentMethods extends Component {
       Culqi.settings({
         currency: currency,
         amount: amount,
+        xCulqiRSAId: "INSERTE_SU_RSA_ID",
+        rsapublickey: `INSERTE_SU_LLAVE_RSA`,        
       });
       setTimeout(() => {
         this.setState({
