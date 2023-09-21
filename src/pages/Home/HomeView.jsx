@@ -35,11 +35,11 @@ class HomeView extends Component {
     e.preventDefault()
     const inputs = e.target.getElementsByTagName('input');
     const _settings = this.state.setting;
-    const { isError } = this._validateForm(inputs)
-    if (isError) {
-      alert('Debes llenar los campos')
-      return;
-    }
+    //const { isError } = this._validateForm(inputs)
+    //if (isError) {
+    //  alert('Debes llenar los campos')
+    //  return;
+    //}
     for (const item in _settings) {
       this.state.isLoading = true;
       localStorage.setItem(item, _settings[item].toString())
@@ -52,7 +52,7 @@ class HomeView extends Component {
     let isError = false, message = null;
     for (const item in setting) {
       const input = Array.from(inputs).find(x => x.id === item);
-      if (setting[item] === '') {
+      if (setting[item] === '' &&  item != 'xculqirsaid') {
         input.style.border = '1px solid red';
         isError = true;
         message = `Debe agregar su ${item}`

@@ -92,13 +92,24 @@ export default class PaymentYape extends Component {
 
       const Culqi = window.Culqi;
       Culqi.publicKey = publicKey;
-      Culqi.settings({
-        currency: currency,
-        amount: amount,
-        order: order_id,
-        xculqirsaid: xculqirsaid,
-        rsapublickey: rsapublickey,       
-      });
+      if(xculqirsaid == '' || rsapublickey == '')
+      {
+        Culqi.settings({
+          currency: currency,
+          amount: amount,
+          order: order_id            
+        });
+      }
+      else{
+        Culqi.settings({
+          currency: currency,
+          amount: amount,
+          order: order_id,
+          xculqirsaid: xculqirsaid,
+          rsapublickey: rsapublickey,       
+        });
+      }  
+     
       Culqi.options({
         lang: "auto",
         paymentMethods: {
@@ -139,7 +150,7 @@ export default class PaymentYape extends Component {
           );
         } else {
           alert(
-            `Hubo un error al generar el código CIP: \n ${
+            `Hubo un error al generar el token: \n ${
               Culqi.error.user_message ?? Culqi.error.merchant_message ?? ""
             }`
           );
