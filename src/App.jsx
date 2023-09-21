@@ -28,7 +28,7 @@ const App = () => {
           />
           <Route
             path="/payment-yape"
-            render={() => { return pkExist && order_id ? <views.PaymentYape /> : <Redirect to='/' /> }}
+            render={() => { return pkExist  ? <views.PaymentYape /> : <Redirect to='/' /> }}
           />
         </Switch>
       </div>

@@ -51,12 +51,23 @@ class PaymentMethods extends Component {
       const Culqi = window.Culqi;
       Culqi.publicKey = publicKey;
       Culqi.init();
-      Culqi.settings({
-        currency: currency,
-        amount: amount,
-        xculqirsaid: xculqirsaid,
-        rsapublickey: rsapublickey,        
-      });
+      if(xculqirsaid == '' || rsapublickey == '')
+      {
+        Culqi.settings({
+          currency: currency,
+          amount: amount,         
+        });
+      }
+      else
+      {
+        Culqi.settings({
+          currency: currency,
+          amount: amount,
+          xculqirsaid: xculqirsaid,
+          rsapublickey: rsapublickey,        
+        });
+      }
+      
       setTimeout(() => {
         this.setState({
           isBtnDisabled: false
@@ -70,7 +81,7 @@ class PaymentMethods extends Component {
           this.clearField();
         } else {
           alert(
-            `Hubo un error al generar el código CIP: \n ${Culqi.error.user_message ?? Culqi.error.merchant_message ?? ""
+            `Hubo un error al generar el token: \n ${Culqi.error.user_message ?? Culqi.error.merchant_message ?? ""
             }`
           );
           this.clearField();
