@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import InputSingle from 'components/Atoms/InputSingle'
 import SelectSingle from 'components/Atoms/SelectSingle'
+import TextareaSingle from "components/Atoms/TextareaSingle";
 
 class HomeView extends Component {
 
@@ -9,12 +10,16 @@ class HomeView extends Component {
     setting: {
       publicKey: '',
       secretKey: '',
+      xculqirsaid: '',
+      rsapublickey: '',
       currency: 'PEN',
       amount: ''
     },
     regex: {
       publicKey: 'pk_test_',
       secretKey: 'sk_test_',
+      xculqirsaid: 'a233d',
+      rsapublickey: 'RSA',
       amount: '[0-9]{1,6}'
     },
   }
@@ -85,6 +90,20 @@ class HomeView extends Component {
                 types='text'
                 label='Secret Key (sk)'
                 placeholder="sk_test_****************"
+                values={this.addOnChange}
+              />
+              <InputSingle
+                input='xculqirsaid'
+                types='text'
+                label='Rsa ID'
+                placeholder="a12dsds****************"
+                values={this.addOnChange}
+              />
+               <TextareaSingle
+                input='rsapublickey'
+                types='textarea'
+                label='Rsa PublicKey'
+                placeholder="RSA *******"
                 values={this.addOnChange}
               />
               <SelectSingle

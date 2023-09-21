@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { URL_CLI } from "config/api";
 import { AddingScript } from "hooks/useScripts";
 import InputSingle from "components/Atoms/InputSingle";
+import TextareaSingle from "components/Atoms/TextareaSingle";
 
 class PaymentMethods extends Component {
   state = {
@@ -46,15 +47,15 @@ class PaymentMethods extends Component {
   async componentDidMount() {
     await AddingScript(URL_CLI);
     setTimeout(() => {
-      const { publicKey, amount, currency } = localStorage;
+      const {publicKey, xculqirsaid, rsapublickey, amount, currency } = localStorage;
       const Culqi = window.Culqi;
       Culqi.publicKey = publicKey;
       Culqi.init();
       Culqi.settings({
         currency: currency,
         amount: amount,
-        xCulqiRSAId: "INSERTE_SU_RSA_ID",
-        rsapublickey: `INSERTE_SU_LLAVE_RSA`,        
+        xculqirsaid: xculqirsaid,
+        rsapublickey: rsapublickey,        
       });
       setTimeout(() => {
         this.setState({

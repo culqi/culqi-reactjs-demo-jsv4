@@ -83,8 +83,8 @@ export default class PaymentYape extends Component {
   async componentDidMount() {
     await AddingScript(URL_CLI);
     setTimeout(() => {
-      const { publicKey, amount, currency, order_id } = localStorage;
-
+      const { publicKey, xculqirsaid, rsapublickey, amount, currency, order_id } = localStorage;
+      console.log(rsapublickey);  
       this.setState({
         pk: publicKey,
         order_id: order_id,
@@ -96,8 +96,8 @@ export default class PaymentYape extends Component {
         currency: currency,
         amount: amount,
         order: order_id,
-        xCulqiRSAId: "INSERTE_SU_RSA_ID",
-        rsapublickey: `INSERTE_SU_LLAVE_RSA`,       
+        xculqirsaid: xculqirsaid,
+        rsapublickey: rsapublickey,       
       });
       Culqi.options({
         lang: "auto",
