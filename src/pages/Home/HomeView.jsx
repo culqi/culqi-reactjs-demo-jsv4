@@ -73,9 +73,7 @@ class HomeView extends Component {
           <div className='max-w-md mx-auto space-y-6'>
             <form onSubmit={this._handleSubmit}>
               <h2 className="text-2xl font-bold ">Flujo de checkout personalizado</h2>
-              <p className="my-4 opacity-70">Para realizar pruebas debes ingresar tus 'pk_test' y 'sk_test'.
-                <br />
-                El campo moneda y precio son opcionales
+              <p className="my-4 opacity-70">Para realizar pruebas debes ingresar los siguientes datos.
               </p>
               <hr className="my-6" />
               <InputSingle
