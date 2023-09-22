@@ -58,7 +58,7 @@ class ComponenteGenerate extends Component {
   }
 }
 
-export default class PaymentCip extends Component {
+export default class PaymentYape extends Component {
   state = {
     order_id: null,
     errorMessage: null,
@@ -83,8 +83,8 @@ export default class PaymentCip extends Component {
   async componentDidMount() {
     await AddingScript(URL_CLI);
     setTimeout(() => {
-      const {publicKey, xculqirsaid, rsapublickey, amount, currency, order_id } = localStorage;
-
+      const { publicKey, xculqirsaid, rsapublickey, amount, currency, order_id } = localStorage;
+      console.log(rsapublickey);  
       this.setState({
         pk: publicKey,
         order_id: order_id,
@@ -92,7 +92,7 @@ export default class PaymentCip extends Component {
 
       const Culqi = window.Culqi;
       Culqi.publicKey = publicKey;
-      if(xculqirsaid =='' || rsapublickey == '')
+      if(xculqirsaid == '' || rsapublickey == '')
       {
         Culqi.settings({
           currency: currency,
@@ -100,8 +100,7 @@ export default class PaymentCip extends Component {
           order: order_id            
         });
       }
-      else
-      {
+      else{
         Culqi.settings({
           currency: currency,
           amount: amount,
@@ -109,8 +108,7 @@ export default class PaymentCip extends Component {
           xculqirsaid: xculqirsaid,
           rsapublickey: rsapublickey,       
         });
-      }
-
+      }  
      
       Culqi.options({
         lang: "auto",
@@ -128,27 +126,31 @@ export default class PaymentCip extends Component {
         });
       }, 2000);
       window.culqi = () => {
+       
         if (
-          Culqi.order &&
-          Culqi.order.payment_code &&
-          Culqi.order.payment_code !== null
+          Culqi.token 
         ) {
           this.setState({
             isBtnDisabled: false,
             isLoading: {
               ...this.state.isLoading,
               btnCip: false,
-            },
-            cipCode: Culqi.order.payment_code,
+            },          
             textSuccess: { ...this.state.textSuccess, cip: "Códgio CIP" },
             isGenerate: {
               ...this.state.isGenerate,
               cip: true,
             },
           });
+          console.log("Yape Generado", Culqi.token.id)
+          alert(
+            `Yape Generado: \n ${
+              Culqi.token.id
+            }`
+          );
         } else {
           alert(
-            `Hubo un error al generar el código CIP: \n ${
+            `Hubo un error al generar el token: \n ${
               Culqi.error.user_message ?? Culqi.error.merchant_message ?? ""
             }`
           );
@@ -172,7 +174,7 @@ export default class PaymentCip extends Component {
       };
     }, 2000);
   }
-  generateCipCode = async () => {
+  generateYapeCode = async () => {
     this.setState({
       isBtnDisabled: true,
       isLoading: {
@@ -182,8 +184,9 @@ export default class PaymentCip extends Component {
     });
     const Culqi = window.Culqi;
     Culqi.validationPaymentMethods();
-    const { available, generate, message } = Culqi.paymentOptionsAvailable.cip;
+    const { available, generate, message } = Culqi.paymentOptionsAvailable.yape;
     if (available) {
+      console.log("Se genero el codigo Yape");
       generate();
     } else {
       alert("Error al generar el código CIP: ", message);
@@ -227,10 +230,12 @@ export default class PaymentCip extends Component {
       },
     });
   };
+
   render() {
+    console.log(this.state.isBtnDisabled)
     return (
       <div className="flex items-center justify-center min-h-screen bg-slate-700">
-        <div className="relative w-2/5 h-full py-5 m-auto shadow-xl rounded-3xl bg-gray-50">
+        <div className="relative h-auto py-5 m-auto shadow-xl w-96 rounded-3xl bg-gray-50">
           <div className="px-5">
             <div className="flex items-center justify-between mb-2">
               <Link
@@ -246,36 +251,24 @@ export default class PaymentCip extends Component {
               >
                 Cerrar
               </button>
-            </div>
-            <div className="mb-2">
-              <h1 className="text-3xl font-bold text-center text-gray-600 md:text-5xl">
-                Confirmar Orden
-              </h1>
-            </div>
+            </div>           
           </div>
-          <div className="grid w-full grid-rows-2 gap-10 px-5 py-10 text-gray-800 bg-white border-t border-b border-gray-200">
-            <ComponenteGenerate
-              labelText="Crear código Cip"
-              actionClick={this.generateCipCode}
-              isLoading={this.state.isLoading.btnCip}
-              btnText="Generar"
-              btnTextLoading="Generando CIP"
-              isGenerate={this.state.isGenerate.cip}
-              textSuccess={this.state.textSuccess.cip}
-              result={this.state.cipCode}
-              isDisabled={this.state.isBtnDisabled}
-            />
-            <ComponenteGenerate
-              labelText="Crear link Cuotéalo"
-              actionClick={this.generateLinkCuotealo}
-              isLoading={this.state.isLoading.btnCuotealo}
-              btnText="Generar"
-              btnTextLoading="Generando Link"
-              isGenerate={this.state.isGenerate.cuotealo}
-              textSuccess={this.state.textSuccess.cuotealo}
-              result={this.state.linkCouotealo}
-              isDisabled={this.state.isBtnDisabled}
-            />
+          <div className="m-auto w-80">
+            <div className="grid items-center h-auto grid-cols-1 gap-8 py-10 place-content-center">
+            <form>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <label style={{ marginRight: '10px' }}>
+                  <span>Teléfono: </span>
+                  <input type="text" size="9" data-culqi="yape[phone]" id="yape[phone]" />
+                </label>
+                <label>
+                  <span>Código: </span>
+                  <input type="text" size="6" data-culqi="yape[code]" id="yape[code]" />
+                </label>
+              </div>
+            </form>
+            <button id="btn_pagar" onClick={this.generateYapeCode}>Pagar</button>
+            </div>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import InputSingle from 'components/Atoms/InputSingle'
 import SelectSingle from 'components/Atoms/SelectSingle'
+import TextareaSingle from "components/Atoms/TextareaSingle";
 
 class HomeView extends Component {
 
@@ -9,12 +10,16 @@ class HomeView extends Component {
     setting: {
       publicKey: '',
       secretKey: '',
+      xculqirsaid: '',
+      rsapublickey: '',
       currency: 'PEN',
       amount: ''
     },
     regex: {
       publicKey: 'pk_test_',
       secretKey: 'sk_test_',
+      xculqirsaid: 'a233d',
+      rsapublickey: 'RSA',
       amount: '[0-9]{1,6}'
     },
   }
@@ -30,11 +35,11 @@ class HomeView extends Component {
     e.preventDefault()
     const inputs = e.target.getElementsByTagName('input');
     const _settings = this.state.setting;
-    const { isError } = this._validateForm(inputs)
-    if (isError) {
-      alert('Debes llenar los campos')
-      return;
-    }
+    //const { isError } = this._validateForm(inputs)
+    //if (isError) {
+    //  alert('Debes llenar los campos')
+    //  return;
+    //}
     for (const item in _settings) {
       this.state.isLoading = true;
       localStorage.setItem(item, _settings[item].toString())
@@ -47,7 +52,7 @@ class HomeView extends Component {
     let isError = false, message = null;
     for (const item in setting) {
       const input = Array.from(inputs).find(x => x.id === item);
-      if (setting[item] === '') {
+      if (setting[item] === '' &&  item != 'xculqirsaid') {
         input.style.border = '1px solid red';
         isError = true;
         message = `Debe agregar su ${item}`
@@ -68,9 +73,7 @@ class HomeView extends Component {
           <div className='max-w-md mx-auto space-y-6'>
             <form onSubmit={this._handleSubmit}>
               <h2 className="text-2xl font-bold ">Flujo de checkout personalizado</h2>
-              <p className="my-4 opacity-70">Para realizar pruebas debes ingresar tus 'pk_test' y 'sk_test'.
-                <br />
-                El campo moneda y precio son opcionales
+              <p className="my-4 opacity-70">Para realizar pruebas debes ingresar los siguientes datos.
               </p>
               <hr className="my-6" />
               <InputSingle
@@ -85,6 +88,20 @@ class HomeView extends Component {
                 types='text'
                 label='Secret Key (sk)'
                 placeholder="sk_test_****************"
+                values={this.addOnChange}
+              />
+              <InputSingle
+                input='xculqirsaid'
+                types='text'
+                label='Rsa ID'
+                placeholder="a12dsds****************"
+                values={this.addOnChange}
+              />
+               <TextareaSingle
+                input='rsapublickey'
+                types='textarea'
+                label='Rsa PublicKey'
+                placeholder="RSA *******"
                 values={this.addOnChange}
               />
               <SelectSingle
