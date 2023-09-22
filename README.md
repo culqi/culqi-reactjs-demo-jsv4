@@ -1,33 +1,48 @@
-# demo-culqi-checkout
+# DEMO - Culqi ReactJS + Checkout V4
+
+La demo integra Culqi React, Checkout V4 , es compatible con la v2.0 del Culqi API, con esta demo podrás **generar tokens** (tarjeta y Yape) y confirmar órdenes.
+
+## Requisitos
+
+- React 17.0+
+- Afiliate [aquí](https://afiliate.culqi.com/).
+- Si vas a realizar pruebas obtén tus llaves desde [aquí](https://integ-panel.culqi.com/#/registro), si vas a realizar transacciones reales obtén tus llaves desde [aquí](https://mipanel.culqi.com/#/registro).
+
+> Recuerda que para obtener tus llaves debes ingresar a tu CulqiPanel > Desarrollo > ***API Keys***.
+
+![alt tag](http://i.imgur.com/NhE6mS9.png)
+
+> Recuerda que las credenciales son enviadas al correo que registraste en el proceso de afiliación.
+
+* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys.
 
 
-## Available Scripts
+## Instalación
 
-In the project directory, you can run:
+Ejecuta los siguientes comandos:
 
-### `npm start`
+```bash
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Configuración frontend
+Puedes configurar el pk, sk, rsa_id, rsa_public_key del comercio inicia la aplicacion.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Inicializar la demo
+Ejecutar el siguiente comando:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm start
+```
 
-### `npm run build`
+## Probar la demo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para poder visualizar el frontend de la demo ingresar a la siguiente URL:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+http://localhost:3000/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Documentación
 
-### `npm run eject`
-
-> Demo creado con fines de integración
+- [Referencia de Documentación](https://docs.culqi.com/)
+- [Referencia de API](https://apidocs.culqi.com/)
