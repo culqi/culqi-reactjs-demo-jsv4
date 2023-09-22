@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { URL_CLI } from "config/api";
 import { AddingScript } from "hooks/useScripts";
 import InputSingle from "components/Atoms/InputSingle";
+import TextareaSingle from "components/Atoms/TextareaSingle";
 
 class PaymentMethods extends Component {
   state = {
@@ -46,14 +47,27 @@ class PaymentMethods extends Component {
   async componentDidMount() {
     await AddingScript(URL_CLI);
     setTimeout(() => {
-      const { publicKey, amount, currency } = localStorage;
+      const {publicKey, xculqirsaid, rsapublickey, amount, currency } = localStorage;
       const Culqi = window.Culqi;
       Culqi.publicKey = publicKey;
       Culqi.init();
-      Culqi.settings({
-        currency: currency,
-        amount: amount,
-      });
+      if(xculqirsaid == '' || rsapublickey == '')
+      {
+        Culqi.settings({
+          currency: currency,
+          amount: amount,         
+        });
+      }
+      else
+      {
+        Culqi.settings({
+          currency: currency,
+          amount: amount,
+          xculqirsaid: xculqirsaid,
+          rsapublickey: rsapublickey,        
+        });
+      }
+      
       setTimeout(() => {
         this.setState({
           isBtnDisabled: false
@@ -67,7 +81,7 @@ class PaymentMethods extends Component {
           this.clearField();
         } else {
           alert(
-            `Hubo un error al generar el código CIP: \n ${Culqi.error.user_message ?? Culqi.error.merchant_message ?? ""
+            `Hubo un error al generar el token: \n ${Culqi.error.user_message ?? Culqi.error.merchant_message ?? ""
             }`
           );
           this.clearField();

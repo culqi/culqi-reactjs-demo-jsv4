@@ -83,7 +83,7 @@ export default class PaymentCip extends Component {
   async componentDidMount() {
     await AddingScript(URL_CLI);
     setTimeout(() => {
-      const { publicKey, amount, currency, order_id } = localStorage;
+      const {publicKey, xculqirsaid, rsapublickey, amount, currency, order_id } = localStorage;
 
       this.setState({
         pk: publicKey,
@@ -92,11 +92,26 @@ export default class PaymentCip extends Component {
 
       const Culqi = window.Culqi;
       Culqi.publicKey = publicKey;
-      Culqi.settings({
-        currency: currency,
-        amount: amount,
-        order: order_id,
-      });
+      if(xculqirsaid =='' || rsapublickey == '')
+      {
+        Culqi.settings({
+          currency: currency,
+          amount: amount,
+          order: order_id            
+        });
+      }
+      else
+      {
+        Culqi.settings({
+          currency: currency,
+          amount: amount,
+          order: order_id,
+          xculqirsaid: xculqirsaid,
+          rsapublickey: rsapublickey,       
+        });
+      }
+
+     
       Culqi.options({
         lang: "auto",
         paymentMethods: {
