@@ -259,15 +259,34 @@ export default class PaymentYape extends Component {
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <label style={{ marginRight: '10px' }}>
                   <span>Teléfono: </span>
-                  <input type="text" size="9" data-culqi="yape[phone]" id="yape[phone]" />
+                  <input 
+                  type="text" 
+                  className="w-full p-3 mt-2 mb-4 border-2 rounded bg-slate-200 border-slate-200 focus:border-blue-500 focus:outline-none" 
+                  size="9" 
+                  placeholder="xxxxxxxxx" 
+                  data-culqi="yape[phone]" 
+                  id="yape[phone]" 
+                  />
                 </label>
                 <label>
-                  <span>Código: </span>
-                  <input type="text" size="6" data-culqi="yape[code]" id="yape[code]" />
+                  <span>Código OTP: </span>
+                  <input 
+                  type="text" 
+                  className="w-full p-3 mt-2 mb-4 border-2 rounded bg-slate-200 border-slate-200 focus:border-blue-500 focus:outline-none"
+                  size="6" 
+                  placeholder="xxxxxx" 
+                  data-culqi="yape[code]" 
+                  id="yape[code]" 
+                  />
                 </label>
               </div>
             </form>
-            <button id="btn_pagar" onClick={this.generateYapeCode}>Pagar</button>
+            <div className="flex flex-wrap items-center justify-center mt-4 mb-2 -mx-3">
+              <button id="btn_pagar" 
+              className="px-3 py-2 text-white bg-purple-600 rounded-lg cursor-pointer hover:text-black disabled:bg-purple-300 disabled:hover:bg-purple-300 disabled:hover:text-white disabled:cursor-not-allowed"
+              onClick={this.generateYapeCode}>Pagar con Yape
+              </button>
+            </div>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ La demo integra Culqi React, Checkout V4 , es compatible con la v2.0 del Culqi A
 ## Requisitos
 
 - React 17.0+
+- Node 16+
 - Afiliate [aquí](https://afiliate.culqi.com/).
 - Si vas a realizar pruebas obtén tus llaves desde [aquí](https://integ-panel.culqi.com/#/registro), si vas a realizar transacciones reales obtén tus llaves desde [aquí](https://mipanel.culqi.com/#/registro).
 
