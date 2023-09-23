@@ -158,9 +158,6 @@ class PaymentMethods extends Component {
                       placeholder="email@email.com"
                       values={this.addOnChange}
                     />
-                    <p className="text-xs italic text-gray-600">
-                      Make it as long and as crazy as you'd like
-                    </p>
                   </div>
                 </div>
                 <div className="flex flex-wrap mb-6 -mx-3">
@@ -173,9 +170,6 @@ class PaymentMethods extends Component {
                       placeholder="4111 1111 1111 1111"
                       values={this.addOnChange}
                     />
-                    <p className="text-xs italic text-gray-600">
-                      Make it as long and as crazy as you'd like
-                    </p>
                   </div>
                 </div>
                 <div className="flex flex-wrap mb-2 -mx-3">
@@ -216,6 +210,20 @@ class PaymentMethods extends Component {
                       placeholder="123"
                       values={this.addOnChange}
                     />
+                  </div>
+                </div>
+                <div className="flex flex-wrap mb-6 -mx-3">
+                  <div className="w-full px-3">
+                  <div>
+                    <label>
+                      <span>Cuotas</span>
+                    </label>
+                    <select 
+                    className="w-full p-3 mt-2 mb-4 border-2 rounded bg-slate-200 border-slate-200 focus:border-blue-500 focus:outline-none" 
+                    disabled id="card[installments]">
+                      <option value="1">selecciona...</option>
+                    </select>
+                  </div>
                   </div>
                 </div>
                 <div className="flex flex-wrap items-center justify-center mt-4 mb-2 -mx-3">
